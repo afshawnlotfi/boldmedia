@@ -1,0 +1,1 @@
+export type AnimatedIconType = "alarm" | "download"

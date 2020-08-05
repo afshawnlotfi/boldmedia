@@ -6,6 +6,7 @@
 # Logs
 dist/
 bin/
+icons/
 logs
 *.log
 npm-debug.log*

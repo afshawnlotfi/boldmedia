@@ -13,14 +13,14 @@ const conversion = (element: INode, children: INode[]) => {
     "path",
   ].includes(element.name)
     ? {
-        name: "path",
-        type: "element",
-        value: "",
-        attributes: {
-          d: toPath(element),
-        },
-        children,
-      }
+      name: "path",
+      type: "element",
+      value: "",
+      attributes: {
+        d: toPath(element),
+      },
+      children,
+    }
     : { ...element, children }
 }
 
@@ -37,7 +37,7 @@ const convertToPath = (nodes: INode[]): INode[] => {
 
 export const removeSvg = (svg: string) => {
   let newSvg = svg
-  const remove = [`d="M0 0h24v24H0z"`]
+  const remove = [`d="M0 0h24v24H0z"`, `d="M0 .5h24v24H0z"`]
   remove.forEach((item) => {
     newSvg = newSvg.replace(item, "")
   })

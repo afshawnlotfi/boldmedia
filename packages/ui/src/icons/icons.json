@@ -1,0 +1,10 @@
+{
+    "alarm": {
+        "attribution": "Material Icons",
+        "url": "https://fonts.gstatic.com/s/i/materialicons/alarm_on/v6/24px.svg?download=true"
+    },
+    "download": {
+        "attribution": "Material Icons",
+        "url": "https://fonts.gstatic.com/s/i/materialicons/system_update_alt/v7/24px.svg?download=true"
+    }
+}

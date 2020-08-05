@@ -6,7 +6,7 @@
     ]
   },
   "scripts": {
-    "build": "rm -rf packages/cli/dist && tsc --build --incremental packages/cli && chmod +x packages/cli/dist/cli.js",
+    "build": "rm -rf packages/cli/dist && rm -rf packages/cli/tsconfig.tsbuildinfo && tsc --build --incremental packages/cli && chmod +x packages/cli/dist/cli.js",
     "postinstall": "npm run build"
   },
   "private": true,

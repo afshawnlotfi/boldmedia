@@ -12,7 +12,7 @@ import fetch from "node-fetch"
 import { camelCase, capitalize } from "../utils"
 import { convertToSvgPath } from "./svg-helpers"
 
-const ICON_PATH = `${process.cwd()}/icons`
+const ICON_PATH = `${process.cwd()}/src/icons`
 const ICON_TYPES_PATH = `${ICON_PATH}/icons.ts`
 const ICON_JSON_PATH = `${ICON_PATH}/icons.json`
 const ICON_COMPONENT_PATH = `${ICON_PATH}/components`
