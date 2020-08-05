@@ -14,6 +14,7 @@
     "@types/react-dom": "^16.9.0",
     "chart.js": "^2.9.3",
     "react": "^16.13.1",
+    "react-chartjs-2": "^2.10.0",
     "react-dom": "^16.13.1",
     "react-mt-svg-lines": "^0.9.1",
     "react-scripts": "3.4.1",
@@ -40,5 +41,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/chart.js": "^2.9.23",
+    "@types/react-chartjs-2": "^2.5.7"
   }
 }

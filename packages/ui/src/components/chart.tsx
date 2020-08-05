@@ -7,7 +7,7 @@ if (defaults.global.animation) {
   defaults.global.animation.duration = 2000
 }
 
-function App() {
+export const ChartComponent = () => {
   const options: chartjs.ChartOptions = {
     maintainAspectRatio: false,
 
@@ -59,4 +59,3 @@ function App() {
   )
 }
 
-export default App
