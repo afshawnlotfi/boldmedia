@@ -1,0 +1,25 @@
+{
+  "name": "@boldmedia/cli",
+  "version": "1.0.6",
+  "description": "",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@svgr/core": "^5.4.0",
+    "element-to-path": "^1.2.0",
+    "node-fetch": "^2.6.0",
+    "svgson": "^4.1.0",
+    "yargs": "^14.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.27",
+    "@types/node-fetch": "^2.5.7",
+    "@types/yargs": "^13.0.2",
+    "typescript": "^3.8.3"
+  },
+  "bin": {
+    "boldmedia-cli": "./dist/cli.js"
+  }
+}

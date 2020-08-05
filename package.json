@@ -1,0 +1,17 @@
+{
+  "name": "root",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "build": "rm -rf packages/cli/dist && tsc --build --incremental packages/cli && chmod +x packages/cli/dist/cli.js",
+    "postinstall": "npm run build"
+  },
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.22.1",
+    "typescript": "^3.8.3"
+  }
+}
