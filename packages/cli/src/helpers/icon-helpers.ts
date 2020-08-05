@@ -6,7 +6,7 @@ import {
   readFileSync,
   unlinkSync,
   writeFile,
-  writeFileSync,
+  writeFileSync
 } from "fs"
 import fetch from "node-fetch"
 import { camelCase, capitalize } from "../utils"
@@ -17,8 +17,9 @@ const ICON_TYPES_PATH = `${ICON_PATH}/icons.ts`
 const ICON_JSON_PATH = `${ICON_PATH}/icons.json`
 const ICON_COMPONENT_PATH = `${ICON_PATH}/components`
 
-interface IconEntry {
-  attribution: string | null
+export interface IconAttribution { author: string | null, type: "Flaticon" | "Material" | "Ionicons" | "Custom" }
+export interface IconEntry {
+  attribution: IconAttribution
   url: string
 }
 
@@ -77,7 +78,7 @@ const downloadSVG = async (sourceUrl: string) => {
   return { svg, url }
 }
 
-const getAttribution = async (url: string) => {
+const getAttribution = async (url: string): Promise<IconAttribution> => {
   if (url.includes("flaticon.com")) {
     const authorRegex = /"author": "(.*)"/gm
     const flatIconFetch = await fetch(url)
@@ -85,16 +86,16 @@ const getAttribution = async (url: string) => {
     const authorRegexMatch = authorRegex.exec(flatIconHtml)
     if (authorRegexMatch && authorRegexMatch[1]) {
       const author = authorRegexMatch[1]
-      return author
+      return { author, type: "Flaticon" }
     } else {
-      return null
+      return { author: null, type: "Flaticon" }
     }
   } else if (url.includes("fonts.gstatic.com")) {
-    return "Material Icons"
+    return { author: "Material", type: "Material" }
   } else if (url.includes("unpkg.com/ionicons")) {
-    return "Ionicons"
+    return { author: "Ionicons", type: "Ionicons" }
   } else {
-    return null
+    return { author: null, type: "Custom" }
   }
 }
 

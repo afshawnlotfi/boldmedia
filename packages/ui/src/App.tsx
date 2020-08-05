@@ -5,7 +5,7 @@ import { AnimatedIcon } from "./components/animated-icon"
 function App() {
   return (
     <div>
-      <AnimatedIcon icon="download" duration={2000} />
+      <AnimatedIcon icon="play" duration={1000} />
     </div>
   )
 }

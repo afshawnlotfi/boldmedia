@@ -1,3 +1,4 @@
+import { IconEntry } from "@boldmedia/cli/dist/helpers/icon-helpers"
 import { makeStyles } from "@material-ui/core/styles"
 import React from "react"
 import SvgLines from "react-mt-svg-lines"
@@ -19,6 +20,8 @@ export interface AnimatedIconProps {
   icon: AnimatedIconType
 }
 
+const icons = require("../icons/icons.json") as { [key: string]: IconEntry }
+
 export const AnimatedIcon: React.FC<AnimatedIconProps> = ({
   duration = 1000,
   icon,
@@ -29,9 +32,7 @@ export const AnimatedIcon: React.FC<AnimatedIconProps> = ({
   const defaultProps = {
     fill: "none",
     stroke: "white",
-    // strokeWidth: 3,
-
-    strokeWidth: 0.15,
+    strokeWidth: icons[icon].attribution.type === "Material" ? 0.15 : 3,
     ...props,
   }
 
