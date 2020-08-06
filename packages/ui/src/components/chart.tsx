@@ -1,61 +1,79 @@
 // import { AnimatedIcon } from "./components/animated-icon"
-import chartjs from "chart.js";
-import React from "react";
-import { Bar, ChartData, defaults } from 'react-chartjs-2';
-
-if (defaults.global.animation) {
-  defaults.global.animation.duration = 2000
-}
+import Chart, { ChartData, ChartOptions } from "chart.js"
+import React, { useEffect, useRef } from "react"
 
 export const ChartComponent = () => {
-  const options: chartjs.ChartOptions = {
-    maintainAspectRatio: false,
+  const canvasRef = useRef(null)
 
-    scales: {
-      xAxes: [{
+  useEffect(() => {
+    const options: ChartOptions = {
+      title: {
         display: true,
-        gridLines: {
-          display: false
+        fontSize: 50,
+        text: "Test Graph",
+      },
+      // maintainAspectRatio: false,
+      legend: {
+        display: false,
+      },
+      animation: {
+        duration: 1000,
+      },
+      scales: {
+        xAxes: [
+          {
+            display: true,
+            ticks: {
+              fontSize: 30,
+            },
+            gridLines: {
+              display: false,
+            },
+          },
+        ],
+        yAxes: [
+          {
+            display: true,
+            ticks: {
+              fontSize: 30,
+            },
+            gridLines: {
+              display: false,
+            },
+          },
+        ],
+      },
+    }
+    const data: ChartData = {
+      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      datasets: [
+        {
+          label: "My First dataset",
+          backgroundColor: "rgba(255,99,132,0.2)",
+          borderColor: "rgba(255,99,132,1)",
+          borderWidth: 1,
+          hoverBackgroundColor: "rgba(255,99,132,0.4)",
+          hoverBorderColor: "rgba(255,99,132,1)",
+          data: [65, 59, 80, 81, 56, 55, 40],
         },
-      }],
-      yAxes: [{
-        display: true,
-        gridLines: {
-          display: false
-        },
-      }]
+      ],
     }
 
+    setTimeout(() => {
+      const ctx = (canvasRef?.current as any)?.getContext("2d")
 
-  }
-  const data: ChartData<chartjs.ChartData> = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [
-      {
+      new Chart(ctx, {
+        type: "bar",
+        data: data,
 
-        label: 'My First dataset',
-        backgroundColor: 'rgba(255,99,132,0.2)',
-        borderColor: 'rgba(255,99,132,1)',
-        borderWidth: 1,
-        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-        hoverBorderColor: 'rgba(255,99,132,1)',
-        data: [65, 59, 80, 81, 56, 55, 40]
-      }
-    ]
-  };
-
+        options,
+      })
+    }, 1000)
+  }, [])
 
   return (
-    <div>
-      {/* <AnimatedIcon icon="play" duration={1000} /> */}
-      <Bar
-        data={data}
-        width={100}
-        height={500}
-        options={options}
-      />
-
+    <div style={{ width: "100%", height: "100%" }}>
+      <canvas ref={canvasRef}></canvas>
     </div>
   )
 }
-

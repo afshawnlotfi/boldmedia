@@ -8,16 +8,18 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@tweenjs/tween.js": "^18.6.0",
     "@types/jest": "^24.0.0",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "chart.js": "^2.9.3",
     "react": "^16.13.1",
-    "react-chartjs-2": "^2.10.0",
     "react-dom": "^16.13.1",
     "react-mt-svg-lines": "^0.9.1",
     "react-scripts": "3.4.1",
+    "three": "^0.119.1",
+    "three-css3drenderer": "^1.0.1",
     "typescript": "~3.7.2"
   },
   "scripts": {
@@ -43,7 +45,6 @@
     ]
   },
   "devDependencies": {
-    "@types/chart.js": "^2.9.23",
-    "@types/react-chartjs-2": "^2.5.7"
+    "@types/chart.js": "^2.9.23"
   }
 }

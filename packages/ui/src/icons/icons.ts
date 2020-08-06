@@ -1,1 +1,1 @@
-export type AnimatedIconType = "download" | "biking" | "play"
+export type AnimatedIconType = "download" | "biking" | "play" | "chart"

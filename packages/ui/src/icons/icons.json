@@ -19,5 +19,12 @@
             "type": "Ionicons"
         },
         "url": "https://unpkg.com/ionicons@5.1.2/dist/svg/caret-forward-outline.svg"
+    },
+    "chart": {
+        "attribution": {
+            "author": "Material",
+            "type": "Material"
+        },
+        "url": "https://fonts.gstatic.com/s/i/materialicons/leaderboard/v1/24px.svg?download=true"
     }
 }

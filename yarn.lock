@@ -2554,6 +2554,11 @@
   resolved "https://registry.yarnpkg.com/@tweenjs/tween.js/-/tween.js-16.7.0.tgz#3ada9785f5bb2d92bb6313515f88102c2e47ddab"
   integrity sha1-OtqXhfW7LZK7YxNRX4gQLC5H3as=
 
+"@tweenjs/tween.js@^18.6.0":
+  version "18.6.0"
+  resolved "https://registry.yarnpkg.com/@tweenjs/tween.js/-/tween.js-18.6.0.tgz#9160ca987e75ab751d0c48d5100339bd9cd0c301"
+  integrity sha512-z45HU0G0e/SenbvGdAlTpUR5Hur5zwZXQcqfI+f7EnVHdeb2oMI2rQghEePu7uXuvBC0nuKWG5YtZ1nWbuvqzQ==
+
 "@types/aria-query@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@types/aria-query/-/aria-query-4.2.0.tgz#14264692a9d6e2fa4db3df5e56e94b5e25647ac0"
@@ -2696,13 +2701,6 @@
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.4.tgz#15925414e0ad2cd765bfef58842f7e26a7accb24"
   integrity sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
-
-"@types/react-chartjs-2@^2.5.7":
-  version "2.5.7"
-  resolved "https://registry.yarnpkg.com/@types/react-chartjs-2/-/react-chartjs-2-2.5.7.tgz#b77406f6eb6a9f38438966fb27d8cfb1bb7425d3"
-  integrity sha512-waqYqiNULIVUqaKO7MGUpFmWrVtH7gVPOzqwV4y4zgUyu/JiDwC005PpveO442HKnby9kLgp3t1SB2sld+ACLw==
-  dependencies:
-    react-chartjs-2 "*"
 
 "@types/react-dom@*", "@types/react-dom@^16.9.0":
   version "16.9.8"
@@ -11091,14 +11089,6 @@ react-app-polyfill@^1.0.6:
     regenerator-runtime "^0.13.3"
     whatwg-fetch "^3.0.0"
 
-react-chartjs-2@*, react-chartjs-2@^2.10.0:
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/react-chartjs-2/-/react-chartjs-2-2.10.0.tgz#857e7f4788cae27e872624ba7826d53cf82f1ee6"
-  integrity sha512-1MjWEkUn8LLFf6GVyYUOrruJTW3yVU5hlEJOwGj3MiokuC+jH/BahjWVGAMonbe9UYbEIUbd2Rn36iVlC0Hb7w==
-  dependencies:
-    lodash "^4.17.19"
-    prop-types "^15.7.2"
-
 react-dev-utils@^10.2.1:
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-10.2.1.tgz#f6de325ae25fa4d546d09df4bb1befdc6dd19c19"
@@ -12780,6 +12770,16 @@ thenify-all@^1.0.0:
   integrity sha512-RVZSIV5IG10Hk3enotrhvz0T9em6cyHBLkH/YAZuKqd8hRkKhSfCGIcP2KUY0EPxndzANBmNllzWPwak+bheSw==
   dependencies:
     any-promise "^1.0.0"
+
+three-css3drenderer@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/three-css3drenderer/-/three-css3drenderer-1.0.1.tgz#6cdd07b1387d300325435f6ddeaf79e767b467c0"
+  integrity sha1-bN0HsTh9MAMlQ19t3q9552e0Z8A=
+
+three@^0.119.1:
+  version "0.119.1"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.119.1.tgz#9d979a082c4cd9622af8e3498a8dfa026a619332"
+  integrity sha512-GHyh/RiUfQ5VTiWIVRRTANYoXc1PFB1y+jDVRTb649nif1uX1F06PT1TKU3k2+F/MN4UJ3PWvQB53fY2OqKqKw==
 
 throat@^4.0.0:
   version "4.1.0"
