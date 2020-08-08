@@ -17,6 +17,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-mt-svg-lines": "^0.9.1",
+    "react-scenejs": "^1.1.0",
     "react-scripts": "3.4.1",
     "three": "^0.119.1",
     "three-css3drenderer": "^1.0.1",

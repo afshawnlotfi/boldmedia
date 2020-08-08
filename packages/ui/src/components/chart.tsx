@@ -7,12 +7,13 @@ export const ChartComponent = () => {
 
   useEffect(() => {
     const options: ChartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
       title: {
         display: true,
-        fontSize: 50,
+        fontSize: 40,
         text: "Test Graph",
       },
-      // maintainAspectRatio: false,
       legend: {
         display: false,
       },
@@ -22,9 +23,14 @@ export const ChartComponent = () => {
       scales: {
         xAxes: [
           {
+            scaleLabel: {
+              display: true,
+              fontSize: 20,
+              // labelString: "",
+            },
             display: true,
             ticks: {
-              fontSize: 30,
+              fontSize: 20,
             },
             gridLines: {
               display: false,
@@ -33,9 +39,14 @@ export const ChartComponent = () => {
         ],
         yAxes: [
           {
+            scaleLabel: {
+              display: true,
+              fontSize: 20,
+              // labelString: "",
+            },
             display: true,
             ticks: {
-              fontSize: 30,
+              fontSize: 20,
             },
             gridLines: {
               display: false,
@@ -50,10 +61,7 @@ export const ChartComponent = () => {
         {
           label: "My First dataset",
           backgroundColor: "rgba(255,99,132,0.2)",
-          borderColor: "rgba(255,99,132,1)",
           borderWidth: 1,
-          hoverBackgroundColor: "rgba(255,99,132,0.4)",
-          hoverBorderColor: "rgba(255,99,132,1)",
           data: [65, 59, 80, 81, 56, 55, 40],
         },
       ],

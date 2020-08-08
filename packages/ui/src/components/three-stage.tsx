@@ -1,95 +1,113 @@
+import { makeStyles } from "@material-ui/core"
 import TWEEN from "@tweenjs/tween.js"
-import React, { useEffect } from "react"
-import ReactDOM from "react-dom"
+import React, { useEffect, useMemo, useRef, useState } from "react"
 import * as THREE from "three"
-import { CSS3DObject, CSS3DRenderer } from "three-css3drenderer"
-import { ChartComponent } from "./chart"
-export interface ThreeStageProps {}
+import { CSS3DRenderer } from "three-css3drenderer"
+import { SliderMenu } from "./material/slider-menu"
+import { ThreeDiv } from "./view-frame"
 
-const Element = (id: string, x: number, y: number, z: number, ry: number) => {
-  // const div = document.createElement("div")
-  // div.style.width = "480px"
-  // div.style.height = "360px"
-  // div.style.backgroundColor = "#000"
-  // const iframe = document.createElement("iframe")
-  // iframe.style.width = "480px"
-  // iframe.style.height = "360px"
-  // iframe.style.border = "0px"
-  // iframe.src = ["https://www.youtube.com/embed/", id, "?rel=0"].join("")
-  // div.appendChild(iframe)
-  console.log(id)
-  const element = document.createElement("div")
-  ReactDOM.render(<ChartComponent />, element)
+const useStyles = makeStyles({
+  sliderBox: {
+    padding: 10,
+    left: "85%",
+    top: "70%",
+    zIndex: 1000,
+    position: "absolute",
+    width: "500",
+    height: "500",
+    backgroundColor: "rgba(0,0,0,0.2)",
+  },
+})
 
-  element.style.width = "100vw"
-  element.style.height = "100vh"
-
-  // @ts-ignore
-  const object: THREE.Object3D = new CSS3DObject(element)
-  object.position.set(x, y, z)
-  object.rotation.y = ry
-  return object
+interface Vector3D {
+  x: number
+  y: number
+  z: number
+  [key: string]: number
 }
 
-export const ThreeStage: React.FC<ThreeStageProps> = () => {
-  // const mesh = useRef()
-  const coords = { x: 1500, y: 0 } // Start at (0, 0)
+export interface ThreeStageProps {
+  children: JSX.Element
+}
 
-  const camera = new THREE.PerspectiveCamera(
-    50,
-    window.innerWidth / window.innerHeight,
-    1,
-    5000
-  )
-  const scene = new THREE.Scene()
-  // @ts-ignore
-  const renderer = new CSS3DRenderer()
+export const ThreeStage: React.FC<ThreeStageProps> = ({ children }) => {
+  const containerRef = useRef(null)
+  const classes = useStyles()
+  const coords: Vector3D = { x: 0, y: 0, z: 90 }
+  const [div, changeDiv] = useState<any>()
 
-  const onWindowResize = () => {
-    camera.aspect = window.innerWidth / window.innerHeight
-    camera.updateProjectionMatrix()
-    renderer.setSize(window.innerWidth, window.innerHeight)
-  }
-  const animate = (time: number) => {
-    requestAnimationFrame(animate)
-    TWEEN.update(time)
+  const { camera, scene, renderer, cameraZ } = useMemo(() => {
+    return {
+      camera: new THREE.PerspectiveCamera(
+        50,
+        window.innerWidth / window.innerHeight,
+        1,
+        5000
+      ),
+      scene: new THREE.Scene(),
+      renderer: new CSS3DRenderer(),
+      cameraZ: window.innerWidth * 0.5,
+    }
+  }, [])
 
-    // controls.update()
-    renderer.render(scene, camera)
-  }
 
   useEffect(() => {
-    var container = document.getElementById("container")
+    
+  })
 
-    camera.position.set(0, 0, 1500)
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    renderer.domElement.style.position = "absolute"
-    renderer.domElement.style.top = 0
-    if (container) {
-      container.appendChild(renderer.domElement)
+  useEffect(() => {
+    const onWindowResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight
+      camera.updateProjectionMatrix()
+      renderer.setSize(window.innerWidth, window.innerHeight)
     }
-    var group = new THREE.Group()
-    group.add(Element("Vvvicd07zCs", 0, 0, 240, 0))
 
-    scene.add(group)
-    // controls.rotateSpeed = 4
-    window.addEventListener("resize", onWindowResize, false)
+    const animate = (time?: number) => {
+      requestAnimationFrame(animate)
+      TWEEN.update(time ?? 0)
+      renderer.render(scene, camera)
+    }
 
-    new TWEEN.Tween(coords)
-      .to({ x: 1800, y: 200 }, 2000)
-      .easing(TWEEN.Easing.Exponential.Out)
-      .onUpdate(() => {
-        camera.position.set(0, 0, coords.x)
-      })
-      .start(1000)
-    requestAnimationFrame(animate)
+    const container: any = containerRef.current
+    if (container) {
+      camera.position.set(0, 0, cameraZ)
+      renderer.setSize(window.innerWidth, window.innerHeight)
+      renderer.domElement.style.position = "absolute"
+      renderer.domElement.style.top = 0
+      container.appendChild(renderer.domElement)
+      var group = new THREE.Group()
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+      if (!Array.isArray(children)) {
+        const object = ThreeDiv(children, 0, 0, 0, 0)
+        changeDiv(object.element)
+        group.add(object)
+      }
+
+      scene.add(group)
+      window.addEventListener("resize", onWindowResize, false)
+      animate()
+    }
+  }, [camera, cameraZ, children, renderer, scene])
 
   return (
     <div>
-      <div id="container"></div>
+      <div className={classes.sliderBox}>
+        <SliderMenu
+          properties={["x", "y", "z"]}
+          initials={[coords.x, coords.y, coords.z]}
+          onUpdate={(updated) => {
+            ;(new TWEEN.Tween(coords)
+              .to(updated, 1000)
+              .easing(TWEEN.Easing.Quadratic.Out)
+              .onUpdate(() => {
+                div.style.setProperty("width", `${coords.z}vw`)
+                div.style.setProperty("height", `${coords.z}vh`)
+                camera.position.set(coords.x, coords.y, cameraZ)
+              }) as any).start()
+          }}
+        />
+      </div>
+      <div ref={containerRef} />
     </div>
   )
 }
