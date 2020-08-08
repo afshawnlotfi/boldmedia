@@ -9,7 +9,7 @@ const useStyles = makeStyles({
 
 export interface HighlighterProps {}
 
-export const Highlighter: React.FC<HighlighterProps> = ({}) => {
+export const Highlighter: React.FC<HighlighterProps> = () => {
   const classes = useStyles()
   return <div className={classes.highlighter}></div>
 }

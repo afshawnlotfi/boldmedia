@@ -8,8 +8,17 @@
 FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-14
 
 # ** [Optional] Uncomment this section to install additional packages. **
-#
-# RUN apt-get update \
-#     && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
 
+RUN apt-get update \
+    && apt-get -qq update && apt-get -y -qq --no-install-recommends install ffmpeg \
+    libxtst6 \ 
+    libnss3 \
+    libnspr4 \
+    libxss1 \
+    libasound2 \ 
+    libgtk-3-0  \
+    libgdk-pixbuf2.0-0 \
+    lsb-release \
+    xdg-utils \
+    wget \
+    xvfb \

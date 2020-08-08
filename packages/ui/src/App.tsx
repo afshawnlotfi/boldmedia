@@ -1,12 +1,14 @@
-// import { AnimatedIcon } from "./components/animated-icon"
 import React from "react"
+import { AnimatedScene } from "./scene/animated-scene"
 
 function App() {
   return (
-    <div>{/* <ThreeStage>
-        <ChartComponent />
-      </ThreeStage> */}</div>
+    <div onClick={(e) => {
+
+      console.log(e.screenX, e.screenY)
+    }}>
+      <AnimatedScene />
+    </div>
   )
 }
-
 export default App
