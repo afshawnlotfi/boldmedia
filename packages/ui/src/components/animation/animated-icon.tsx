@@ -2,7 +2,7 @@ import { IconEntry } from "@boldmedia/cli/dist/helpers/icon-helpers"
 import { makeStyles } from "@material-ui/core/styles"
 import React from "react"
 import SvgLines from "react-mt-svg-lines"
-import { AnimatedIconType } from "../icons/icons"
+import { AnimatedIconType } from "../../icons/icons"
 
 const useStyles = makeStyles(() => ({
   svg: {

@@ -28,7 +28,6 @@ const useStyles = makeStyles({
     },
 
     playerControls: {
-        paddingTop: 10,
         paddingRight: 20
     },
 
@@ -50,7 +49,10 @@ export const AnimatedPlayer: React.FC<AnimatedPlayerProps> = ({ sceneEl, childre
 
     return (
         <div className={classes.root}>
-            {children}
+            <div style={{ width: "100%", height: "100%" }}>
+                {children}
+
+            </div>
             {
                 isRecording && (
                     <div className={classes.player}>
@@ -62,9 +64,6 @@ export const AnimatedPlayer: React.FC<AnimatedPlayerProps> = ({ sceneEl, childre
                                             sceneEl.isPaused() ? sceneEl.play() : sceneEl.pause()
                                         }
                                     }}
-                                    color="primary"
-                                    aria-label="upload picture"
-                                    component="span"
                                 >
                                     <PlayArrowIcon />
                                 </IconButton>
@@ -75,9 +74,6 @@ export const AnimatedPlayer: React.FC<AnimatedPlayerProps> = ({ sceneEl, childre
                                                 sceneEl.isPaused() ? sceneEl.play() : sceneEl.pause()
                                             }
                                         }}
-                                        color="primary"
-                                        aria-label="upload picture"
-                                        component="span"
                                     >
                                         <PauseIcon />
                                     </IconButton>

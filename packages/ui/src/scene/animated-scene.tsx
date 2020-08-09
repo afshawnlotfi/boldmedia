@@ -1,26 +1,30 @@
+import { wipeIn } from "@scenejs/effects"
 import React, { useState } from "react"
 import { Scene } from "react-scenejs"
-import { AnimatedPlayer } from "../components/animation-player"
-import "./App.css"
-
+import { AnimationElement } from "../components/animation/animation-element"
+import { AnimatedPlayer } from "../components/animation/animation-player"
+import { BlockTextEffect } from "../components/animation/text-effects/block-text"
+import "./scene.css"
 
 export const AnimatedScene = () => {
     const [isPlaying, changeIsPlaying] = useState(false)
     const [sceneEl, changeSceneEl] = useState<Scene>()
-
     const keyframes2 = {
-        ".circles .circle": (i: number) => ({
-            0: {
-                "border-width": "150px",
-                opacity: 1,
-                transform: "translate(-50%, -50%) scale(0)",
-            },
-            2: { "border-width": "0px", opacity: 0.3, transform: "scale(0.7)" },
-            options: {
-                delay: i * 0.4,
-            },
-        }),
+        ".textEx": {
+            // 0.2: wipeIn({ duration: 1, direction: "reverse" }),
+
+            0.2: wipeIn({ duration: 0.5, property: "bottom" }),
+
+
+            // 0.2: wipeIn({ duration: 1, direction: "reverse" })
+
+
+
+        }
+
     }
+
+
     let inputEl: HTMLInputElement | null
 
     return (
@@ -51,11 +55,14 @@ export const AnimatedScene = () => {
                 }}
             >
 
-                <div className="circles">
-                    <div className="circle circle1" />
-                    <div className="circle circle2" />
-                    <div className="circle circle3" />
-                </div>
+
+
+
+                <AnimationElement className={"textEx"}>
+                    <BlockTextEffect title="Afshawn" />
+                </AnimationElement>
+
+
             </Scene>
 
         </AnimatedPlayer>
