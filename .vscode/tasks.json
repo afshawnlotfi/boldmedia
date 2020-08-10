@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "build",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: build",
+			"detail": "rm -rf packages/cli/dist && rm -rf packages/cli/tsconfig.tsbuildinfo && tsc --build --incremental packages/cli && chmod +x packages/cli/dist/cli.js"
+		}
+	]
+}
