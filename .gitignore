@@ -1,5 +1,5 @@
 .mp4
-
+out
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json

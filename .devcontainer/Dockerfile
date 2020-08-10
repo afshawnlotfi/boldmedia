@@ -22,3 +22,5 @@ RUN apt-get update \
     xdg-utils \
     wget \
     xvfb \
+    pdf2htmlEX \
+    ocrmypdf \
