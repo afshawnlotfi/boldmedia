@@ -7,13 +7,8 @@ import { classNames } from "../../utils"
 const useStyles = makeStyles({
     container: {
         position: "absolute",
-        left: "50%",
-        top: "50%",
-        width: 140,
-        height: 160,
         transform: "translate(-50%, -50%)",
         overflow: "hidden",
-
     },
 
     element: {
@@ -27,10 +22,12 @@ export interface AnimationElementProps {
     children: JSX.Element
     className?: string
     width?: number,
-    height?: number
+    height?: number,
+    left?: string
+    top?: string
 }
 
-export const AnimationElement: React.FC<AnimationElementProps> = ({ children, className, width = 0.1, height = 0.05 }) => {
+export const AnimationElement: React.FC<AnimationElementProps> = ({ children, className, width = 0.1, height = 0.05, left = "50%", top = "50%" }) => {
     const classes = useStyles()
 
 
@@ -43,8 +40,8 @@ export const AnimationElement: React.FC<AnimationElementProps> = ({ children, cl
     }, [height, width])
 
     return (
-        <div style={cssSize} className={classes.container}>
-            <div style={cssSize} className={classNames(className, classes.element)}>
+        <div style={{ ...cssSize, left, top }} className={classes.container}>
+            <div style={{ width: "100%", height: cssSize.height }} className={classNames(className, classes.element)}>
                 {children}
             </div>
         </div>

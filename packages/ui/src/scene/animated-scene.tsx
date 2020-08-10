@@ -1,9 +1,8 @@
-import { wipeIn } from "@scenejs/effects"
 import React, { useState } from "react"
 import { Scene } from "react-scenejs"
-import { AnimationElement } from "../components/animation/animation-element"
 import { AnimatedPlayer } from "../components/animation/animation-player"
-import { BlockTextEffect } from "../components/animation/text-effects/block-text"
+import { Highlighter } from "../components/animation/text-effects/highlighter"
+import { highlight } from "../effects/highlight"
 import "./scene.css"
 
 export const AnimatedScene = () => {
@@ -13,8 +12,8 @@ export const AnimatedScene = () => {
         ".textEx": {
             // 0.2: wipeIn({ duration: 1, direction: "reverse" }),
 
-            0.2: wipeIn({ duration: 0.5, property: "bottom" }),
-
+            // 0.2: wipeIn({ duration: 0.5, property: "bottom" }),
+            ...(highlight(0.2, 0.4))
 
             // 0.2: wipeIn({ duration: 1, direction: "reverse" })
 
@@ -56,11 +55,11 @@ export const AnimatedScene = () => {
             >
 
 
+                <Highlighter className={"textEx"} />
 
-
-                <AnimationElement className={"textEx"}>
+                {/* <AnimationElement top="90%" left="10%" className={"textEx"}>
                     <BlockTextEffect title="Afshawn" />
-                </AnimationElement>
+                </AnimationElement> */}
 
 
             </Scene>
