@@ -87,8 +87,6 @@ export const convertToJSX = ({
       )[0]
       ?.children.filter((el) => el.type === "element")
     let code = `import React from "react"
-    import "./base.min.css"
-    import "./fancy.min.css"
     import "./${name}.css"`
 
     pageComponents.forEach((pageComponent, i) => {

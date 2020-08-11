@@ -248,10 +248,3 @@ export const removeDocument = (name: string) => {
     updateDocumentEntry(null, name)
   })
 }
-
-addDocument({
-  type: "website",
-  name: "article",
-  url:
-    "https://www.reuters.com/article/us-lebanon-security-blast-resignation/lebanon-government-resigns-after-deadly-beirut-blast-idUSKCN256258",
-})

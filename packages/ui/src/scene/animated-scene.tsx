@@ -1,9 +1,9 @@
+import { wipeIn } from "@scenejs/effects"
 import React, { useState } from "react"
 import { Scene } from "react-scenejs"
 import { AnimationElement } from "../components/animation/animation-element"
 import { AnimatedPlayer } from "../components/animation/animation-player"
-import { Article0Document } from "../documents/article"
-import { highlight } from "../effects/highlight"
+import { Nbc0Document } from "../documents/components/nbc/nbc"
 import "./scene.css"
 
 export const AnimatedScene = () => {
@@ -13,8 +13,8 @@ export const AnimatedScene = () => {
     ".textEx": {
       // 0.2: wipeIn({ duration: 1, direction: "reverse" }),
 
-      // 0.2: wipeIn({ duration: 0.5, property: "bottom" }),
-      ...highlight(0.2, 0.4),
+      0.2: wipeIn({ duration: 0.5, property: "bottom" }),
+      // ...highlight(0.2, 0.4),
 
       // 0.2: wipeIn({ duration: 1, direction: "reverse" })
     },
@@ -52,8 +52,14 @@ export const AnimatedScene = () => {
         }}
       >
         {/* <Highlighter className={"textEx"} text={"HELLO WORLD"} /> */}
-        <AnimationElement top="50%" left="50%" width={0.5} height={0.5}>
-          <Article0Document />
+        <AnimationElement
+          className={"textEx"}
+          top="50%"
+          left="50%"
+          width={0.5}
+          height={0.5}
+        >
+          <Nbc0Document />
         </AnimationElement>
       </Scene>
     </AnimatedPlayer>

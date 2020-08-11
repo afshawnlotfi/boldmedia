@@ -1,0 +1,10 @@
+{
+    "cnbc": {
+        "type": "website",
+        "url": "https://www.cnbc.com/2020/08/11/scientists-worry-whether-russias-sputnik-v-coronavirus-vaccine-is-safe-and-effective.html"
+    },
+    "nbc": {
+        "type": "website",
+        "url": "https://www.nbcnews.com/news/us-news/coronavirus-cases-lead-over-800-quarantine-georgia-school-district-where-n1236364"
+    }
+}
