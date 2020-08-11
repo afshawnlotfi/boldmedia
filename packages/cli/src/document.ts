@@ -1,5 +1,5 @@
 import yargs from "yargs"
-import { addIcon, removeIcon } from "./helpers/icon-helpers"
+import { addDocument, removeDocument } from "./helpers/document-helpers"
 
 export const documentWebsiteAddArgs = (argv: yargs.Argv) =>
   argv.options({
@@ -24,7 +24,7 @@ export const documentWebsiteAddHandler = ({
   source: string
   name: string
 }) => {
-  addIcon(source, name)
+  addDocument({name, url : source, type : "website"})
 }
 
 export const documentPdfAddArgs = (argv: yargs.Argv) =>
@@ -50,7 +50,7 @@ export const documentPdfAddHandler = ({
   source: string
   name: string
 }) => {
-  addIcon(source, name)
+  addDocument({name, url : source, type : "pdf"})
 }
 
 export const documentImageAddArgs = (argv: yargs.Argv) =>
@@ -76,7 +76,7 @@ export const documentImageAddHandler = ({
   source: string
   name: string
 }) => {
-  addIcon(source, name)
+  addDocument({name, url : source, type : "img"})
 }
 
 export const documentRemoveArgs = (argv: yargs.Argv) =>
@@ -90,5 +90,5 @@ export const documentRemoveArgs = (argv: yargs.Argv) =>
   })
 
 export const documentRemoveHandler = ({ name }: { name: string }) => {
-  removeIcon(name)
+  removeDocument(name)
 }

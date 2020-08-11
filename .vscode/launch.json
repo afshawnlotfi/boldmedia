@@ -11,8 +11,13 @@
       "program": "${workspaceFolder}/packages/cli/dist/cli.js",
       "preLaunchTask": "npm: build",
       "args": [
-
-        "--help"
+        "document",
+        "remove",
+        "website",
+        // "-s",
+        // "https://www.reuters.com/article/us-lebanon-security-blast-resignation/lebanon-government-resigns-after-deadly-beirut-blast-idUSKCN256258",
+        "-n",
+        "article"
       ],
       "cwd": "${workspaceFolder}/packages/cli",
       "outFiles": ["${workspaceFolder}/build/**/*.js"]

@@ -1,7 +1,7 @@
-import { readFileSync } from "fs"
 // @ts-ignore
 import { parse, stringify } from "himalaya"
-import { capitalize } from "../utils"
+import prettier from "prettier"
+import { capitalize, dashToCamelCase } from "../utils"
 
 interface HtmlElement {
   type: string
@@ -39,12 +39,7 @@ const conversion = (element: HtmlElement, children: HtmlElement[]) => {
                   const cssKey = cssMatches[0]
                   const cssValue = cssMatches[1].trim()
                   if (!!cssKey && !!cssValue) {
-                    const newCssKey = cssKey
-                      .split("-")
-                      .map((styleSub, i) => {
-                        return i > 0 ? capitalize(styleSub) : styleSub
-                      })
-                      .join("")
+                    const newCssKey = dashToCamelCase(cssKey)
                     return { key: newCssKey, value: cssValue }
                   }
                   throw new Error(`malformed style: ${style}`)
@@ -73,45 +68,64 @@ const convertToPath = (nodes: HtmlElement[]): HtmlElement[] => {
   })
 }
 
-const convertToJSX = () => {
-  const name = "article"
-  const html = readFileSync(`../${name}/${name}.html`, { encoding: "utf8" })
+export const convertToJSX = ({
+  html,
+  name,
+}: {
+  html: string
+  name: string
+}) => {
   const json: HtmlElement[] = parse(html)
   const body = json
     .filter((el: HtmlElement) => el.tagName === "html")[0]
     ?.children.filter((el: HtmlElement) => el.tagName === "body")[0]
   if (body) {
-    // console.log(body.children)
-    const stringified = stringify(convertToPath(body.children)) as string
-    const quoteRemoved = stringified
-      .replace(/'{{/gm, "{{")
-      .replace(/}}'/gm, "}}")
-
-    const imgCorrected = quoteRemoved.replace(/(<img[^\/]*?>)/gm, (x) => {
-      return x.replace(/>$/gm, "/>").replace(/src='(.*)'/gm, (y) => {
-        return `src={require("./${y}")}`
-      })
-    })
-
-    const template = `import React from "react"
+    const converted = convertToPath(body.children)
+    const pageComponents = converted
+      .filter(
+        (el) => el.attributes && el.attributes[0]?.value === "page-container"
+      )[0]
+      ?.children.filter((el) => el.type === "element")
+    let code = `import React from "react"
     import "./base.min.css"
     import "./fancy.min.css"
-    import "./${name}.css"
-    
-    
-    export interface ${capitalize(name)}DocumentProps {}
-    
-    export const ${capitalize(
-      name
-    )}Document: React.FC<ArticleDocumentProps> = () => {
-      return (
-        <div>
-          ${imgCorrected}
-        </div>
-      )
-    }`
-    console.log(template)
-  }
-}
+    import "./${name}.css"`
 
-convertToJSX()
+    pageComponents.forEach((pageComponent, i) => {
+      const stringified = stringify([pageComponent]) as string
+      const quoteRemoved = stringified
+        .replace(/'{{/gm, "{{")
+        .replace(/}}'/gm, "}}")
+
+      const imgCorrected = quoteRemoved.replace(/(<img[^\/]*?>)/gm, (x) => {
+        return x.replace(/>$/gm, "/>").replace(/src='(.*)'/gm, (y) => {
+          const matches = /src='(.*)'/gm.exec(y)
+          if (matches && matches[1]) {
+            return `src={require("./${matches[1]}")}`
+          }
+          throw new Error("img file match error")
+        })
+      })
+
+      const className = capitalize(dashToCamelCase(name))
+      code += `
+      
+      
+      export interface ${className}${i}DocumentProps {}
+      
+      export const ${className}${i}Document: React.FC<${capitalize(
+        name
+      )}${i}DocumentProps> = () => {
+        return (
+          <div>
+            ${imgCorrected}
+          </div>
+        )
+      }`
+    })
+
+    const formatted = prettier.format(code, { semi: false, parser: "babel" })
+    return formatted
+  }
+  throw new Error("HTML does not have a <body> tag")
+}
