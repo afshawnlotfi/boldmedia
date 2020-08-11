@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Scene } from "react-scenejs"
 import { AnimatedPlayer } from "../components/animation/animation-player"
-import { Highlighter } from "../components/animation/text-effects/highlighter"
+import { Article } from "../documents/article"
 import { highlight } from "../effects/highlight"
 import "./scene.css"
 
@@ -50,8 +50,8 @@ export const AnimatedScene = () => {
           changeIsPlaying(false)
         }}
       >
-        <Highlighter className={"textEx"} text={"HELLO WORLD"} />
-
+        {/* <Highlighter className={"textEx"} text={"HELLO WORLD"} /> */}
+        <Article />
         {/* <AnimationElement top="90%" left="10%" className={"textEx"}>
                     <BlockTextEffect title="Afshawn" />
                 </AnimationElement> */}
