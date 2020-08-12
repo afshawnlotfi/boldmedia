@@ -6,5 +6,9 @@
     "nbc": {
         "type": "website",
         "url": "https://www.nbcnews.com/news/us-news/coronavirus-cases-lead-over-800-quarantine-georgia-school-district-where-n1236364"
+    },
+    "nytimes": {
+        "type": "website",
+        "url": "https://www.nytimes.com/2020/08/11/us/politics/kamala-harris-vp-biden.html"
     }
 }

@@ -6,8 +6,9 @@ import { AnimatedScene } from "./scene/animated-scene"
 function App() {
   return (
     <div
+      style={{ width: "100vw", height: "100vh" }}
       onClick={(e) => {
-        console.log(e.screenX, e.screenY)
+        console.log(e.clientX, e.clientY)
       }}
     >
       <AnimatedScene />

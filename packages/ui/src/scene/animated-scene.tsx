@@ -1,20 +1,28 @@
-import { wipeIn } from "@scenejs/effects"
+import { kineticFrame, zoomIn } from "@scenejs/effects"
 import React, { useState } from "react"
 import { Scene } from "react-scenejs"
-import { AnimationElement } from "../components/animation/animation-element"
 import { AnimatedPlayer } from "../components/animation/animation-player"
-import { Nbc0Document } from "../documents/components/nbc/nbc"
-import "./scene.css"
+import { Nbc1Document } from "../documents/components/nbc/nbc"
+import { highlight } from "../effects/highlight"
 
 export const AnimatedScene = () => {
   const [isPlaying, changeIsPlaying] = useState(false)
   const [sceneEl, changeSceneEl] = useState<Scene>()
   const keyframes2 = {
+    ".box": {
+      1: zoomIn({ from: 1, to: 2, duration: 1 }),
+      0: kineticFrame({ left: "0px", top: "15%" }).set({
+        transform: "rotate(0deg)",
+      }),
+
+      // 1: kineticFrame({ left: "0px", top: "0px" }).set({
+      //   transform: "rotate(0deg)",
+      // }),
+    },
     ".textEx": {
       // 0.2: wipeIn({ duration: 1, direction: "reverse" }),
-
-      0.2: wipeIn({ duration: 0.5, property: "bottom" }),
-      // ...highlight(0.2, 0.4),
+      // 0.2: wipeIn({ duration: 0.5, property: "bottom" }),
+      ...highlight(0.2, 0.4),
 
       // 0.2: wipeIn({ duration: 1, direction: "reverse" })
     },
@@ -52,15 +60,17 @@ export const AnimatedScene = () => {
         }}
       >
         {/* <Highlighter className={"textEx"} text={"HELLO WORLD"} /> */}
-        <AnimationElement
-          className={"textEx"}
+        {/* <AnimationElement
+          className={"box"}
           top="50%"
           left="50%"
-          width={0.5}
-          height={0.5}
-        >
-          <Nbc0Document />
-        </AnimationElement>
+          width={1.0}
+          height={1.0}
+        > */}
+        <div className={"box"}>
+          <Nbc1Document />
+        </div>
+        {/* </AnimationElement> */}
       </Scene>
     </AnimatedPlayer>
   )

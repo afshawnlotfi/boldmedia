@@ -1,4 +1,5 @@
 import React from "react"
+import { Highlighter } from "../../../components/animation/text-effects/highlighter"
 import "./nbc.css"
 
 export interface Nbc0DocumentProps {}
@@ -461,7 +462,11 @@ export const Nbc1Document: React.FC<Nbc1DocumentProps> = () => {
                 <span className="_ _1"></span>a<span className="fc0">.</span>
               </span>
             </div>
-            <div className="t m0 x1 h4 y1b ff2 fs1 fc0 sc0 ls0 ws0">
+            <Highlighter
+              className="t m0 x1 h4 y1b ff2 fs1 fc0 sc0 ls0 ws0 textEx"
+              text="A spokeswoman said in a statement Tuesday that the district anticipated ahead of schools"
+            />
+            {/* <div className="t m0 x1 h4 y1b ff2 fs1 fc0 sc0 ls0 ws0">
               A s<span className="_ _0"></span>p<span className="_ _0"></span>
               okesw<span className="_ _0"></span>om
               <span className="_ _1"></span>an s<span className="_ _0"></span>ai
@@ -478,7 +483,7 @@ export const Nbc1Document: React.FC<Nbc1DocumentProps> = () => {
               <span className="_ _4"></span>ed<span className="_ _0"></span>{" "}
               ahead of sch<span className="_ _0"></span>ool
               <span className="_ _4"></span>s
-            </div>
+            </div> */}
             <div className="t m0 x1 h4 y1c ff2 fs1 fc0 sc0 ls0 ws0">
               reopeni<span className="_ _1"></span>n
               <span className="_ _0"></span>g t<span className="_ _1"></span>h

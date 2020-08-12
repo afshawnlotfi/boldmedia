@@ -28,8 +28,8 @@ export const Highlighter: React.FC<HighlighterProps> = ({
 }) => {
   const classes = useStyles()
   return (
-    <h1 style={style} className={classNames(classes.title, className)}>
+    <div style={style} className={classNames(classes.title, className)}>
       {text}
-    </h1>
+    </div>
   )
 }
